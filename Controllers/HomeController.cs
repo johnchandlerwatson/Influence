@@ -22,21 +22,21 @@ namespace Popularity.Controllers
                         FirstName = "Chandler",
                         LastName = "Watson",
                         Email = "johnchandlerwatson@gmail.com",
-                        Popularity = 999999
+                        Influence = 999999
                     },
                     new User 
                     { 
                         FirstName = "Austin",
                         LastName = "Whitesell",
                         Email = "austinwhitesell@gmail.com",
-                        Popularity = 999999
+                        Influence = 999999
                     },
                     new User 
                     { 
                         FirstName = "Nate",
                         LastName = "Whitesell",
                         Email = "natewhitesell@gmail.com",
-                        Popularity = 999999
+                        Influence = 999999
                     }
                 }
             };

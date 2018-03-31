@@ -1,11 +1,11 @@
 ﻿@model Popularity.Models.MostPopularModel
 @{
-    ViewData["Title"] = "Popularity";
+    ViewData["Title"] = "INFLUENCE";
 }
 
 <div class="pop-header">
     <div class="row center-container">
-        <h1 style="margin-top:100px; font-size:5.5em; font-family: 'Monoton', cursive;">POPULARITY</h1>
+        <h1 style="margin-top:100px; font-size:5.5em; font-family: 'Monoton', cursive;">INFLUENCE</h1>
     </div>
     <div class="row center-container">
         <button id="join-button" style="margin-top:25px; margin-bottom:35px" class="btn btn-lg btn-success">SIGN UP</button>
@@ -22,26 +22,26 @@
     <div class="col-md-3">
         <h2 class="center-container">Have Fun</h2>
         <ul>
-            <li>Collect badges, achievements, and popularity of course!</li>
-            <li>Who can get the most tokens?</li>
+            <li>Collect badges, achievements, and influence of course!</li>
+            <li>Who will become the most powerful?</li>
         </ul>
     </div>
     <div class="col-md-3">
-        <h2 class="center-container">Be nice!</h2>
+        <h2 class="center-container">Find ways to gain influence</h2>
         <ul>
-            <li>This is not a place for bullying!</li>
+            <li>There are many different ways to gain influence.</li>
         </ul>
     </div>
 </div>
 <div class="center-container">
     <div id="most-popular-section">
-        <h2 style="text-align: center;">Most Popular</h2>
+        <h2 style="text-align: center;">Highest Influence</h2>
         <div id="most-popular" class="flex-row">
             @foreach (var user in Model.Users)
             {
                 <div class="popular-user">
                     <h4>@user.FirstName @user.LastName</h4>
-                    <p>@user.Popularity</p>
+                    <p>@user.Influence</p>
                 </div>
             }
         </div>
@@ -53,7 +53,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Join Popularity!</h2>
+        <h2 class="modal-title">Join INFLUENCE!</h2>
       </div>
       <div class="modal-body">
         <form id="join-form">
