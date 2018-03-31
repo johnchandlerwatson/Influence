@@ -7,7 +7,7 @@
         <h1 style="margin-top:100px; font-size:5.5em; font-family: 'Monoton', cursive;">POPULARITY</h1>
     </div>
     <div class="row center-container">
-        <button style="margin-top:25px; margin-bottom:35px" class="btn btn-lg btn-success">SIGN UP</button>
+        <button id="join-button" style="margin-top:25px; margin-bottom:35px" class="btn btn-lg btn-success">SIGN UP</button>
     </div>
 </div>
 <div class="row center-h-container">
@@ -32,3 +32,40 @@
         </ul>
     </div>
 </div>
+<div class="modal fade" id="join-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Join Popularity!</h2>
+      </div>
+      <div class="modal-body">
+        <form id="join-form">
+            <div class="form-field">
+                <label for="firstname">First Name:</label>
+                <input type="text" name="firstname">
+            </div>
+            <div class="form-field">
+                <label for="lastname">Last Name:</label>
+                <input type="text" name="lastname">
+            </div>
+            <div class="form-field">
+                <label for="email">Email:</label>
+                <input type="text" name="email">
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">JOIN!</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Nah</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $("#join-button").click(function() {
+            $('#join-modal').modal('show');
+        });
+    });
+</script>

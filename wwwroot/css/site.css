@@ -61,3 +61,16 @@ body {
     background: linear-gradient(#ad60ad, #4a7f9e);
     border-radius: 35px;
 }
+
+input {
+    border-radius: 6px;
+    border-style: groove;
+    background-color: #e6f5f0;
+}
+
+.form-field {
+    display: grid;
+    grid-template-columns: 30% 50%;
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
