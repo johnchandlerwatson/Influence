@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Popularity.Models.MostPopularModel
+@{
     ViewData["Title"] = "Popularity";
 }
 
@@ -32,6 +33,22 @@
         </ul>
     </div>
 </div>
+<div class="center-container">
+    <div id="most-popular-section">
+        <h2 style="text-align: center;">Most Popular</h2>
+        <div id="most-popular" class="flex-row">
+            @foreach (var user in Model.Users)
+            {
+                <div class="popular-user">
+                    <h4>@user.FirstName @user.LastName</h4>
+                    <p>@user.Popularity</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
 <div class="modal fade" id="join-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

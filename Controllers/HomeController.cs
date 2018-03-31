@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Popularity.Domain;
 using Popularity.Models;
 
 namespace Popularity.Controllers
@@ -12,7 +13,34 @@ namespace Popularity.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var model = new MostPopularModel
+            {
+                Users = new List<User>
+                {
+                    new User 
+                    { 
+                        FirstName = "Chandler",
+                        LastName = "Watson",
+                        Email = "johnchandlerwatson@gmail.com",
+                        Popularity = 999999
+                    },
+                    new User 
+                    { 
+                        FirstName = "Austin",
+                        LastName = "Whitesell",
+                        Email = "austinwhitesell@gmail.com",
+                        Popularity = 999999
+                    },
+                    new User 
+                    { 
+                        FirstName = "Nate",
+                        LastName = "Whitesell",
+                        Email = "natewhitesell@gmail.com",
+                        Popularity = 999999
+                    }
+                }
+            };
+            return View("Index", model);
         }
 
         public IActionResult About()
