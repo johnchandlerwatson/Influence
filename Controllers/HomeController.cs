@@ -22,7 +22,7 @@ namespace Popularity.Controllers
                         FirstName = "Chandler",
                         LastName = "Watson",
                         Email = "johnchandlerwatson@gmail.com",
-                        Influence = 999999
+                        Influence = 666
                     },
                     new User 
                     { 
@@ -36,7 +36,7 @@ namespace Popularity.Controllers
                         FirstName = "Nate",
                         LastName = "Whitesell",
                         Email = "natewhitesell@gmail.com",
-                        Influence = 999999
+                        Influence = 0001
                     }
                 }
             };
