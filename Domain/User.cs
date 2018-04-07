@@ -27,12 +27,6 @@ namespace Popularity.Domain
             Played.Add(card);
         }
 
-        public void AddHandCard(Card card)
-        {
-            card.User = this;
-            Hand.Add(card);
-        }
-
         public void AddHandCards(List<Card> cards)
         {
             foreach (var card in cards)
