@@ -27,6 +27,12 @@
         padding: 0;
     }
 
+    .arena {
+        display: grid;
+        grid-template-columns: 85% 15%;
+        height: 100%;
+    }
+
     .even-rows-container {
         display: grid;
         grid-template-rows: 50% 50%;
@@ -81,72 +87,86 @@
         border-width: 5px;
         border-style: groove;
     }
-</style>
-<div id="enemy-cards" style="height: 10%;" class="hand-section">
-    @foreach (var enemyCard in Model.Enemy.Hand)
-    {
-        <div class="card enemy-card">
-            <p>Enemy Card</p>
-        </div>
-    }
-</div>
-<div id="enemy-champ-section" class="centered champ-section">
-    Enemy Champ Section
-</div>
-<div id="battlefield" style="height: 50%" class="even-rows-container">
-    <div id="enemy-side" class="even-rows-container" style="background-color: rgb(236, 204, 204);">
-        <div id="enemy-side-back" class="flex-row">
-            @foreach (var enemy in Model.Enemy.Played.Where(x => x.Row == Row.Back))
-            {
-                <div>
-                    <p>@enemy.Name</p>
-                </div>
-            }
-        </div>
-        <div id="enemy-side-front">
-            @foreach (var enemy in Model.Enemy.Played.Where(x => x.Row == Row.Front))
-            {
-                <div>
-                    <p>@enemy.Name</p>
-                </div>
-            }
-        </div>
-    </div>
-    <div id="ally-side" class="even-rows-container" style="background-color: rgb(203, 233, 203);">
-        <div id="ally-side-front">
-            @foreach (var ally in Model.User.Played.Where(x => x.Row == Row.Front))
-            {
-                <div>
-                    <p>@ally.Name</p>
-                </div>
-            }
-        </div>
-        <div id="ally-side-back">
-            @foreach (var ally in Model.User.Played.Where(x => x.Row == Row.Back))
-            {
-                <div>
-                    <p>@ally.Name</p>
-                </div>
-            }
-        </div>
-    </div>
-</div>
-<div id="ally-champ-section" class="centered champ-section">
-    Ally Champ Section
-</div>
-<div id="ally-cards" style="height: 20%;" class="hand-section">
-    @foreach (var allyCard in Model.User.Hand)
-    {
-        <div class="card ally-card">
-            <span>@allyCard.Name</span><br>
-            <span>Health: @allyCard.Health</span><br>
-            <span>Damage: @allyCard.Damage</span><br>
-            <span>Rarity: @allyCard.Rarity</span><br>
-        </div>
-    }
-    <input type="text" id="card-selected" hidden>
-</div>
 
+    .action-section {
+        display: grid;
+        grid-template-rows: 5% 95%;
+        height: 100%;
+        background-color: white;
+    }
+</style>
+<div class="arena">
+    <div id="card-table">
+        <div id="enemy-cards" style="height: 10%;" class="hand-section">
+            @foreach (var enemyCard in Model.Enemy.Hand)
+            {
+                <div class="card enemy-card">
+                    <p>Enemy Card</p>
+                </div>
+            }
+        </div>
+        <div id="enemy-champ-section" class="centered champ-section">
+            Enemy Champ Section
+        </div>
+        <div id="battlefield" style="height: 50%" class="even-rows-container">
+            <div id="enemy-side" class="even-rows-container" style="background-color: rgb(236, 204, 204);">
+                <div id="enemy-side-back" class="flex-row">
+                    @foreach (var enemy in Model.Enemy.Played.Where(x => x.Row == Row.Back))
+                    {
+                        <div>
+                            <p>@enemy.Name</p>
+                        </div>
+                    }
+                </div>
+                <div id="enemy-side-front">
+                    @foreach (var enemy in Model.Enemy.Played.Where(x => x.Row == Row.Front))
+                    {
+                        <div>
+                            <p>@enemy.Name</p>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div id="ally-side" class="even-rows-container" style="background-color: rgb(203, 233, 203);">
+                <div id="ally-side-front">
+                    @foreach (var ally in Model.User.Played.Where(x => x.Row == Row.Front))
+                    {
+                        <div>
+                            <p>@ally.Name</p>
+                        </div>
+                    }
+                </div>
+                <div id="ally-side-back">
+                    @foreach (var ally in Model.User.Played.Where(x => x.Row == Row.Back))
+                    {
+                        <div>
+                            <p>@ally.Name</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div id="ally-champ-section" class="centered champ-section">
+            Ally Champ Section
+        </div>
+        <div id="ally-cards" style="height: 20%;" class="hand-section">
+            @foreach (var allyCard in Model.User.Hand)
+            {
+                <div class="card ally-card">
+                    <span>@allyCard.Name</span><br>
+                    <span>Health: @allyCard.Health</span><br>
+                    <span>Damage: @allyCard.Damage</span><br>
+                    <span>Rarity: @allyCard.Rarity</span><br>
+                </div>
+            }
+            <input type="text" id="card-selected" hidden>
+        </div>
+    </div>
+    <div id="actions" class="action-section">
+        <h4 class="centered">Actions</h4>
+        <p>@Model.MoveSummary</p>
+    </div>
+</div>
 <script>
     (function() {
         $(".ally-card").click(function() {
