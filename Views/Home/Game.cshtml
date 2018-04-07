@@ -94,6 +94,12 @@
         height: 100%;
         background-color: white;
     }
+
+    .actions-summary
+    {
+        font-size: .8em;
+        padding: 12px;
+    }
 </style>
 <div class="arena">
     <div id="card-table">
@@ -168,7 +174,7 @@
     </div>
     <div id="actions" class="action-section">
         <h4 class="centered">Actions</h4>
-        <p>@Model.MoveSummary</p>
+        <p class="actions-summary">@Model.MoveSummary</p>
         <div class="centered">
             <button style="margin-left: 10px; margin-right: 10px;" class="btn btn-success" id="submit-button">Submit Move</button>
         </div>
@@ -196,7 +202,11 @@
         });
 
         $("#submit-button").click(function(){
-            window.location = '@Url.Action("Move", "Game")' + '?selection=' + $("#card-selected").val();
+            var selection = $("#card-selected").val();
+            if (selection !== "")
+            {
+                window.location = '@Url.Action("Move", "Game")' + '?selection=' + $("#card-selected").val();
+            }
         });
     })();
 </script>
