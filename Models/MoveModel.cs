@@ -10,7 +10,7 @@ namespace Popularity.Models
     {
         public User User1 { get; set; }
         public User User2 { get; set; }
-        public List<CardAction> Actions { get; set; }
+        public List<CardAction> Actions { get; set; } = new List<CardAction>();
         public string MoveSummary => string.Join(Environment.NewLine, Actions.Select(x => x.ActionDescription()));
     }
 }

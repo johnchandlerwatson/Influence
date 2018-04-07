@@ -5,10 +5,11 @@ namespace Popularity.Domain
 {
     public class User 
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string Username { get; set; }
+        public User(string username)
+        {
+            Username = username;
+        }
+        public string Username { get; }
 
         public List<Card> AvailableCards { get; } = new List<Card>();
         public List<Card> Played { get; set; } = new List<Card>();

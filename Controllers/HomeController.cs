@@ -14,22 +14,10 @@ namespace Popularity.Controllers
     {
         public IActionResult Index()
         {
-            var user1 = new User 
-            { 
-                FirstName = "Chandler",
-                LastName = "Watson",
-                Email = "johnchandlerwatson@gmail.com",
-                Username = "peemagee"
-            };
+            var user1 = new User("peemagee");
             user1.AddPlayedCard(new ArcherCard());
             user1.AddPlayedCard(new KnightCard());
-            var user2 = new User 
-            { 
-                FirstName = "Austin",
-                LastName = "Whitesell",
-                Email = "austinwhitesell@gmail.com",
-                Username = "poopsmagoo"
-            };
+            var user2 = new User("poopsmagoo");
             user2.AddPlayedCard(new AssassinCard());
             user2.AddPlayedCard(new HealerCard());
 

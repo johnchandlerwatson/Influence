@@ -8,7 +8,7 @@
         <h1 style="margin-top:100px; font-size:5.5em; font-family: 'Monoton', cursive;">INFLUENCE</h1>
     </div>
     <div class="row center-container">
-        <button id="join-button" style="margin-top:25px; margin-bottom:35px" class="btn btn-lg btn-success">SIGN UP</button>
+        <button id="show-modal-button" style="margin-top:25px; margin-bottom:35px" class="btn btn-lg btn-success">PLAY!</button>
     </div>
 </div>
 <div class="row center-h-container">
@@ -40,31 +40,22 @@
     </div>
 </div>
 
-
-<div class="modal fade" id="join-modal" tabindex="-1" role="dialog">
+<div class="modal fade" id="play-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Join INFLUENCE!</h2>
+        <h2 class="modal-title">PLAY INFLUENCE!</h2>
       </div>
       <div class="modal-body">
-        <form id="join-form">
+        <form id="play-form">
             <div class="form-field">
-                <label for="firstname">First Name:</label>
-                <input type="text" name="firstname">
-            </div>
-            <div class="form-field">
-                <label for="lastname">Last Name:</label>
-                <input type="text" name="lastname">
-            </div>
-            <div class="form-field">
-                <label for="email">Email:</label>
-                <input type="text" name="email">
+                <label for="username">Username:</label>
+                <input id="username" type="text" name="username">
             </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">JOIN!</button>
+        <button type="button" id="play-button" class="btn btn-primary">PLAY!</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Nah</button>
       </div>
     </div>
@@ -73,8 +64,13 @@
 
 <script>
     $(document).ready(function() {
-        $("#join-button").click(function() {
-            $('#join-modal').modal('show');
+        $("#show-modal-button").click(function() {
+            $('#play-modal').modal('show');
+        });
+
+        $("#play-button").click(function() {
+            var gameUrl = '@Url.Action("Index", "Game")' + '?username=' + $("#username").val();
+            window.location = gameUrl;
         });
     });
 </script>
