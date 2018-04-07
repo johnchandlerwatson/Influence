@@ -12,19 +12,40 @@
         grid-template-rows: 50% 50%;
     }
 
-    .flex-row {
-        display: flex; flex-direction: row;
+    .hand-section {
+        display: flex; 
+        flex-direction: row;
+        background-color: rgb(204, 204, 228)
     }
+
+    .flex-row {
+        display: flex; 
+        flex-direction: row;
+    }
+
+    .centered {
+        display: grid;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .champ-section {
+        height: 10%; 
+        background-color: rgb(255, 245, 190)
+    }
+
+
 </style>
-<div id="enemy-cards" style="height: 10%;" class="flex-row">
+<div id="enemy-cards" style="height: 10%;" class="hand-section">
     @foreach (var enemyCard in Model.Enemy.Hand)
     {
-        <div style="height: 80%; width: 60px;">
+        <div style="width: 60px; padding: 10px;">
             <p>Enemy Card</p>
         </div>
     }
 </div>
-<div id="enemy-champ-section" style="height: 10%" style="background-color: rgb(255, 245, 190)">
+<div id="enemy-champ-section" class="centered champ-section">
     Enemy Champ Section
 </div>
 <div id="battlefield" style="height: 50%" class="even-rows-container">
@@ -65,17 +86,17 @@
         </div>
     </div>
 </div>
-<div id="ally-champ-section" style="height: 10%" style="background-color: rgb(255, 245, 190)">
+<div id="ally-champ-section" class="centered champ-section">
     Ally Champ Section
 </div>
-<div id="ally-cards" style="height: 20%;" class="flex-row">
+<div id="ally-cards" style="height: 20%;" class="hand-section">
     @foreach (var allyCard in Model.User.Hand)
     {
-        <div style="height: 80%; width: 60px;">
-            <p>@allyCard.Name</p>
-            <p>@allyCard.Health</p>
-            <p>@allyCard.Damage</p>
-            <p>@allyCard.Rarity</p>
+        <div style="width: 150px; padding: 15px;">
+            <span>@allyCard.Name</span><br>
+            <span>Health: @allyCard.Health</span><br>
+            <span>Damage: @allyCard.Damage</span><br>
+            <span>Rarity: @allyCard.Rarity</span><br>
         </div>
     }
 </div>
