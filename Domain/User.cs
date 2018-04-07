@@ -10,12 +10,26 @@ namespace Popularity.Domain
         public string Email { get; set; }
         public string Username { get; set; }
 
-        public List<Card> Cards { get; }
+        public List<Card> AvailableCards { get; } = new List<Card>();
+        public List<Card> Played { get; set; } = new List<Card>();
+        public List<Card> Hand { get; set; } = new List<Card>();
 
-        public void AddCard(Card card)
+        public void AddAvailableCard(Card card)
         {
             card.User = this;
-            Cards.Add(card);
+            AvailableCards.Add(card);
+        }
+
+        public void AddPlayedCard(Card card)
+        {
+            card.User = this;
+            Played.Add(card);
+        }
+
+        public void AddHandCard(Card card)
+        {
+            card.User = this;
+            Hand.Add(card);
         }
     }
 }

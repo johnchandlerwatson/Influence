@@ -14,15 +14,15 @@ namespace Popularity.Controllers
             {
                 FirstName = "David"
             };
-            user1.AddCard(new KnightCard());
-            user1.AddCard(new ArcherCard());
+            user1.AddPlayedCard(new KnightCard());
+            user1.AddPlayedCard(new ArcherCard());
 
             var user2 = new User
             {
                 FirstName = "Josh"
             };
-            user1.AddCard(new AssassinCard());
-            user1.AddCard(new HealerCard());
+            user1.AddPlayedCard(new AssassinCard());
+            user1.AddPlayedCard(new HealerCard());
 
             var model = new GameModel
             {

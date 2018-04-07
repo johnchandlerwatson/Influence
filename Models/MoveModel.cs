@@ -1,15 +1,16 @@
+using System;
 using System.Collections.Generic;
 using Popularity.Domain;
 using Popularity.Domain.Cards;
+using System.Linq;
 
 namespace Popularity.Models
 {
     public class MoveModel
     {
-        public List<Card> User1Deck { get; set; }
-        public List<Card> User2Deck { get; set; }
-        public List<Card> User1Hand { get; set; }
-        public List<Card> User2Hand { get; set; }
+        public User User1 { get; set; }
+        public User User2 { get; set; }
         public List<CardAction> Actions { get; set; }
+        public string MoveSummary => string.Join(Environment.NewLine, Actions.Select(x => x.ActionDescription()));
     }
 }

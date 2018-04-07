@@ -1,4 +1,4 @@
-﻿@model Popularity.Models.MostPopularModel
+﻿@model Popularity.Models.MoveModel
 @{
     ViewData["Title"] = "INFLUENCE";
 }
@@ -35,16 +35,8 @@
 </div>
 <div class="center-container">
     <div id="most-popular-section">
-        <h2 style="text-align: center;">Highest Influence</h2>
-        <div id="most-popular" class="flex-row">
-            @foreach (var user in Model.Users)
-            {
-                <div class="popular-user">
-                    <h4>@user.FirstName @user.LastName</h4>
-                    <p>@user.Influence</p>
-                </div>
-            }
-        </div>
+        <h2 style="text-align: center;">Example Move</h2>
+        <p>@Model.MoveSummary</p>
     </div>
 </div>
 

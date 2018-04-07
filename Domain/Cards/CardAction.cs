@@ -9,7 +9,7 @@ namespace Popularity.Domain
     {
         public CardAction(Card actorCard, List<Card> damagedCards, List<Card> healedCards)
         {
-            Target = damagedCards.FirstOrDefault().User;
+            Target = damagedCards?.FirstOrDefault()?.User;
             Actor = actorCard.User;
             DamagedCards = damagedCards;
             HealedCards = healedCards;

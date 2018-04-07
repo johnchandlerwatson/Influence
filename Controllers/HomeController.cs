@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Popularity.Domain;
+using Popularity.Domain.Cards;
 using Popularity.Models;
 
 namespace Popularity.Controllers
@@ -13,31 +14,28 @@ namespace Popularity.Controllers
     {
         public IActionResult Index()
         {
-            var model = new MostPopularModel
-            {
-                Users = new List<User>
-                {
-                    new User 
-                    { 
-                        FirstName = "Chandler",
-                        LastName = "Watson",
-                        Email = "johnchandlerwatson@gmail.com"
-                    },
-                    new User 
-                    { 
-                        FirstName = "Austin",
-                        LastName = "Whitesell",
-                        Email = "austinwhitesell@gmail.com"
-                    },
-                    new User 
-                    { 
-                        FirstName = "Nate",
-                        LastName = "Whitesell",
-                        Email = "natewhitesell@gmail.com"
-                    }
-                }
+            var user1 = new User 
+            { 
+                FirstName = "Chandler",
+                LastName = "Watson",
+                Email = "johnchandlerwatson@gmail.com",
+                Username = "peemagee"
             };
-            return View("Index", model);
+            user1.AddPlayedCard(new ArcherCard());
+            user1.AddPlayedCard(new KnightCard());
+            var user2 = new User 
+            { 
+                FirstName = "Austin",
+                LastName = "Whitesell",
+                Email = "austinwhitesell@gmail.com",
+                Username = "poopsmagoo"
+            };
+            user2.AddPlayedCard(new AssassinCard());
+            user2.AddPlayedCard(new HealerCard());
+
+            var gameEngine = new GameEngine();
+            var results = gameEngine.ExecuteMove(user1, user2);
+            return View("Index", results);
         }
 
         public IActionResult About()
