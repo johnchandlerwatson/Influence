@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Popularity.Domain.Cards;
 
 namespace Popularity.Domain
 {
@@ -7,7 +8,14 @@ namespace Popularity.Domain
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        public long Influence { get; set; }
-        public List<Token> Tokens { get; set; }
+        public string Username { get; set; }
+
+        public List<Card> Cards { get; }
+
+        public void AddCard(Card card)
+        {
+            card.User = this;
+            Cards.Add(card);
+        }
     }
 }

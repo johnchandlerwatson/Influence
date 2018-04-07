@@ -14,15 +14,15 @@ namespace Popularity.Domain.Cards
         public override int Healing => 0;
         public override int MaxHealth => 5;
 
-        public override void ApplyMove(List<Card> enemyCards, List<Card> friendlyCards)
+        public override void ApplyMove(List<Card> enemyCards, List<Card> friendlyCards, List<CardAction> actions)
         {
-            //prioritizes front row
-            var cardsToAttack = enemyCards.Where(x => x.Row == Row.Front);
-            cardsToAttack = cardsToAttack.Any() ? cardsToAttack : enemyCards.Where(x => x.Row == Row.Back);
-            if (!cardsToAttack.Any()) return;
-            
-            var lowestHealthCard = cardsToAttack.OrderBy(x => x.Health).First();
-            lowestHealthCard.Health = lowestHealthCard.Health - Damage;      
+            var cardsToAttack = TargetedCards(enemyCards);
+            if (cardsToAttack.Any())
+            {
+                var lowestHealthCard = cardsToAttack.OrderBy(x => x.Health).First();
+                lowestHealthCard.Health = lowestHealthCard.Health - Damage;
+                actions.Add(new CardAction(this, new List<Card> {lowestHealthCard}, null));
+            } 
         }
     }
 }

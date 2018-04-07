@@ -14,11 +14,17 @@ namespace Popularity.Domain.Cards
         public override int Speed => 4;
         public override int MaxHealth => 4;
 
-        public override void ApplyMove(List<Card> enemyCards, List<Card> friendlyCards)
+        public override void ApplyMove(List<Card> enemyCards, List<Card> friendlyCards, List<CardAction> actions)
         {
-            foreach (var enemy in enemyCards.Where(x => x.Row == Row.Back))
-            {
+            var cardsToAttack = TargetedCards(enemyCards);
 
+            if (cardsToAttack.Any())
+            {
+                foreach (var enemy in cardsToAttack)
+                {
+                    enemy.Health = enemy.Health - Damage;
+                }
+                actions.Add(new CardAction(this, cardsToAttack, null));
             }
         }
     }
