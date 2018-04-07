@@ -1,6 +1,81 @@
+@using System.Linq;
+@using Popularity.Domain.Cards;
 @model Popularity.Models.MoveModel
+
 @{
     ViewData["Title"] = "Arena";
+    Layout = null;
 }
+<style>
+    .even-rows-container {
+        display: grid;
+        grid-template-rows: 50% 50%;
+    }
 
-<h1>Welcome to the arena!</h1>
+    .flex-row {
+        display: flex; flex-direction: row;
+    }
+</style>
+<div id="enemy-cards" style="height: 10%;" class="flex-row">
+    @foreach (var enemyCard in Model.Enemy.Hand)
+    {
+        <div style="height: 80%; width: 60px;">
+            <p>Enemy Card</p>
+        </div>
+    }
+</div>
+<div id="enemy-champ-section" style="height: 10%" style="background-color: rgb(255, 245, 190)">
+    Enemy Champ Section
+</div>
+<div id="battlefield" style="height: 50%" class="even-rows-container">
+    <div id="enemy-side" class="even-rows-container" style="background-color: rgb(236, 204, 204);">
+        <div id="enemy-side-back" class="flex-row">
+            @foreach (var enemy in Model.Enemy.Played.Where(x => x.Row == Row.Back))
+            {
+                <div>
+                    <p>@enemy.Name</p>
+                </div>
+            }
+        </div>
+        <div id="enemy-side-front">
+            @foreach (var enemy in Model.Enemy.Played.Where(x => x.Row == Row.Front))
+            {
+                <div>
+                    <p>@enemy.Name</p>
+                </div>
+            }
+        </div>
+    </div>
+    <div id="ally-side" class="even-rows-container" style="background-color: rgb(203, 233, 203);">
+        <div id="ally-side-front">
+            @foreach (var ally in Model.User.Played.Where(x => x.Row == Row.Front))
+            {
+                <div>
+                    <p>@ally.Name</p>
+                </div>
+            }
+        </div>
+        <div id="ally-side-back">
+            @foreach (var ally in Model.User.Played.Where(x => x.Row == Row.Back))
+            {
+                <div>
+                    <p>@ally.Name</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div id="ally-champ-section" style="height: 10%" style="background-color: rgb(255, 245, 190)">
+    Ally Champ Section
+</div>
+<div id="ally-cards" style="height: 20%;" class="flex-row">
+    @foreach (var allyCard in Model.User.Hand)
+    {
+        <div style="height: 80%; width: 60px;">
+            <p>@allyCard.Name</p>
+            <p>@allyCard.Health</p>
+            <p>@allyCard.Damage</p>
+            <p>@allyCard.Rarity</p>
+        </div>
+    }
+</div>

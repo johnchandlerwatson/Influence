@@ -7,9 +7,9 @@ namespace Popularity.Domain
 {
     public class GameEngine
     {
-        public MoveModel ExecuteMove(User user1, User user2)
+        public MoveModel ExecuteMove(User user, User enemy)
         {
-            var allCards = user1.Played.Union(user2.Played).OrderByDescending(x => x.Speed).ToList();
+            var allCards = user.Played.Union(enemy.Played).OrderByDescending(x => x.Speed).ToList();
             var actions = new List<CardAction>();
             foreach (var card in allCards)
             {
@@ -19,8 +19,8 @@ namespace Popularity.Domain
             }
             return new MoveModel
             {
-                User1 = user1,
-                User2 = user2,
+                User = user,
+                Enemy = enemy,
                 Actions = actions
             };
         }
