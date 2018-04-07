@@ -32,5 +32,14 @@ namespace Popularity.Domain
             card.User = this;
             Hand.Add(card);
         }
+
+        public void AddHandCards(List<Card> cards)
+        {
+            foreach (var card in cards)
+            {
+                card.User = this;
+            }
+            Hand.AddRange(cards);
+        }
     }
 }

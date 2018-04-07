@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Monoton" rel="stylesheet">
-        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="../js/jquery-3.3.1.min.js"></script>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -19,7 +19,7 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Monoton" rel="stylesheet">
-        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="../js/jquery-3.3.1.min.js"></script>
     </environment>
 </head>
 <style>
@@ -90,7 +90,7 @@
 
     .action-section {
         display: grid;
-        grid-template-rows: 5% 95%;
+        grid-template-rows: 5% 85% 10%;
         height: 100%;
         background-color: white;
     }
@@ -110,37 +110,41 @@
         </div>
         <div id="battlefield" style="height: 50%" class="even-rows-container">
             <div id="enemy-side" class="even-rows-container" style="background-color: rgb(236, 204, 204);">
-                <div id="enemy-side-back" class="flex-row">
+                <div id="enemy-side-back" class="centered">
                     @foreach (var enemy in Model.Enemy.Played.Where(x => x.Row == Row.Back))
                     {
                         <div>
-                            <p>@enemy.Name</p>
+                            <span>@enemy.Name</span><br>
+                            <span>Health: @enemy.Health</span><br>
                         </div>
                     }
                 </div>
-                <div id="enemy-side-front">
+                <div id="enemy-side-front" class="centered">
                     @foreach (var enemy in Model.Enemy.Played.Where(x => x.Row == Row.Front))
                     {
                         <div>
-                            <p>@enemy.Name</p>
+                            <span>@enemy.Name</span><br>
+                            <span>Health: @enemy.Health</span><br>
                         </div>
                     }
                 </div>
             </div>
             <div id="ally-side" class="even-rows-container" style="background-color: rgb(203, 233, 203);">
-                <div id="ally-side-front">
+                <div id="ally-side-front" class="centered">
                     @foreach (var ally in Model.User.Played.Where(x => x.Row == Row.Front))
                     {
                         <div>
-                            <p>@ally.Name</p>
+                            <span>@ally.Name</span><br>
+                            <span>Health: @ally.Health</span><br>
                         </div>
                     }
                 </div>
-                <div id="ally-side-back">
+                <div id="ally-side-back" class="centered">
                     @foreach (var ally in Model.User.Played.Where(x => x.Row == Row.Back))
                     {
                         <div>
-                            <p>@ally.Name</p>
+                            <span>@ally.Name</span><br>
+                            <span>Health: @ally.Health</span><br>
                         </div>
                     }
                 </div>
@@ -165,6 +169,9 @@
     <div id="actions" class="action-section">
         <h4 class="centered">Actions</h4>
         <p>@Model.MoveSummary</p>
+        <div class="centered">
+            <button style="margin-left: 10px; margin-right: 10px;" class="btn btn-success" id="submit-button">Submit Move</button>
+        </div>
     </div>
 </div>
 <script>
@@ -186,6 +193,10 @@
                 var selectedCardName = $(nameSpan).text();
                 $("#card-selected").val(selectedCardName);
             }
+        });
+
+        $("#submit-button").click(function(){
+            window.location = '@Url.Action("Move", "Game")' + '?selection=' + $("#card-selected").val();
         });
     })();
 </script>
