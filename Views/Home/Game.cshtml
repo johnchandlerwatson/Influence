@@ -23,6 +23,10 @@
     </environment>
 </head>
 <style>
+    body {
+        padding: 0;
+    }
+
     .even-rows-container {
         display: grid;
         grid-template-rows: 50% 50%;
@@ -53,12 +57,22 @@
 
     .ally-card {
         width: 150px;
-        padding: 10px;
         cursor: pointer;
+        font-size: .8em;
+        padding-left: 20px;
+    }
+
+    .enemy-card {
+        font-size: .6em;
+        width: 50px;
+        height: 50px;
+    }
+
+    .card {
+        padding: 10px;
         background-color: #af9e9e;
         margin: 10px;
         border-radius: 10px;
-        font-size: .8em;
     }
 
     .selected {
@@ -71,7 +85,7 @@
 <div id="enemy-cards" style="height: 10%;" class="hand-section">
     @foreach (var enemyCard in Model.Enemy.Hand)
     {
-        <div style="width: 60px; padding: 10px;">
+        <div class="card enemy-card">
             <p>Enemy Card</p>
         </div>
     }
@@ -123,7 +137,7 @@
 <div id="ally-cards" style="height: 20%;" class="hand-section">
     @foreach (var allyCard in Model.User.Hand)
     {
-        <div class="ally-card">
+        <div class="card ally-card">
             <span>@allyCard.Name</span><br>
             <span>Health: @allyCard.Health</span><br>
             <span>Damage: @allyCard.Damage</span><br>
