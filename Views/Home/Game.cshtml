@@ -6,6 +6,22 @@
     ViewData["Title"] = "Arena";
     Layout = null;
 }
+<head>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Monoton" rel="stylesheet">
+        <script src="js/jquery-3.3.1.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Monoton" rel="stylesheet">
+        <script src="js/jquery-3.3.1.min.js"></script>
+    </environment>
+</head>
 <style>
     .even-rows-container {
         display: grid;
@@ -35,7 +51,22 @@
         background-color: rgb(255, 245, 190)
     }
 
+    .ally-card {
+        width: 150px;
+        padding: 10px;
+        cursor: pointer;
+        background-color: #af9e9e;
+        margin: 10px;
+        border-radius: 10px;
+        font-size: .8em;
+    }
 
+    .selected {
+        background-color: #bbaaaa;
+        border-color: #a5a5de;
+        border-width: 5px;
+        border-style: groove;
+    }
 </style>
 <div id="enemy-cards" style="height: 10%;" class="hand-section">
     @foreach (var enemyCard in Model.Enemy.Hand)
@@ -92,11 +123,35 @@
 <div id="ally-cards" style="height: 20%;" class="hand-section">
     @foreach (var allyCard in Model.User.Hand)
     {
-        <div style="width: 150px; padding: 15px;">
+        <div class="ally-card">
             <span>@allyCard.Name</span><br>
             <span>Health: @allyCard.Health</span><br>
             <span>Damage: @allyCard.Damage</span><br>
             <span>Rarity: @allyCard.Rarity</span><br>
         </div>
     }
+    <input type="text" id="card-selected" hidden>
 </div>
+
+<script>
+    (function() {
+        $(".ally-card").click(function() {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                var selectedCard = $(this);
+                $(".ally-card").each(function() {
+                    if (this != selectedCard)
+                    {
+                        $(this).removeClass('selected');
+                    }
+                });
+                selectedCard.addClass('selected');
+                var nameSpan = selectedCard.children('span')[0];
+                var selectedCardName = $(nameSpan).text();
+                $("#card-selected").val(selectedCardName);
+            }
+        });
+    })();
+</script>
