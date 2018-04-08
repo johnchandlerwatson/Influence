@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="~/css/site.css" />
         <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Monoton" rel="stylesheet">
         <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -20,6 +21,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed|Monoton" rel="stylesheet">
         <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     </environment>
 </head>
 <style>
@@ -162,7 +164,7 @@
         <div id="ally-cards" style="height: 20%;" class="hand-section">
             @foreach (var allyCard in Model.User.Hand)
             {
-                <div class="card ally-card">
+                <div draggable="true" class="card ally-card">
                     <span>@allyCard.Name</span><br>
                     <span>Health: @allyCard.Health</span><br>
                     <span>Damage: @allyCard.Damage</span><br>
@@ -206,6 +208,17 @@
             if (selection !== "")
             {
                 window.location = '@Url.Action("Move", "Game")' + '?selection=' + $("#card-selected").val();
+            }
+        });
+        $(".ally-card").draggable({
+            revert: "invalid",
+            drag: function(){
+                $(this).trigger("click");
+            }
+        });
+        $("#battlefield").droppable({
+            drop: function( event, ui ) {
+                $("#submit-button").trigger( "click" );
             }
         });
     })();
